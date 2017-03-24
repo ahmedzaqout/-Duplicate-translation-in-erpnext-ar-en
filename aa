@@ -1,0 +1,30 @@
+function def {
+
+
+while read -u 3 -r line; do
+
+if [[ $line != *"js"*  &&  $line == *"+"*  &&  $line != *"config"* ]]; then
+
+
+l="${line//,*}"
+r="${line//*,}"
+z="${line//$l}"
+z="${z//$r}"
+z="${z//,}"
+result=$line"<br>"$z
+
+echo -n "${result}" >> ar.csv
+echo  "" >> ar.csv
+
+else
+
+echo -n "${line}" >> ar.csv
+echo  "" >> ar.csv
+
+fi
+
+
+done 3< ar.csv.old
+
+}
+
