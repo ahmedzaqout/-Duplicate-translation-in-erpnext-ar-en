@@ -3,7 +3,7 @@ function def {
 
 while read -u 3 -r line; do
 
-if [[ $line != *"js"*  &&  $line == *"+"*  &&  $line != *"config"* ]]; then
+ if [[ $line != *"js"*  &&  $line == *"+"*  &&  $line != *"config"* &&  $line != *"html"* &&  $line != *"report"* ]]; then
 
 
 l="${line//,*}"
