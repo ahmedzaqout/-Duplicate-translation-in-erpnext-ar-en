@@ -1,0 +1,26 @@
+function def {
+
+
+while read -u 3 -r line; do
+
+ if [[ $line == *"<br>"*  ]]; then
+
+
+l="${line//<br>*}"
+
+result=$l
+
+echo -n "${result}" >> ar.csv
+echo  "" >> ar.csv
+
+else
+
+echo -n "${line}" >> ar.csv
+echo  "" >> ar.csv
+
+fi
+
+
+done 3< ar.old.csv
+
+}
