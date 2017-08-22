@@ -1,0 +1,54 @@
+
+
+import pycurl, validators
+
+
+def url_exists(url):
+    """
+    Check if the given URL really exists
+    :param url: str
+    :return: bool
+    """
+    if validators.url(url):
+        c = pycurl.Curl()
+        c.setopt(pycurl.NOBODY, True)
+        c.setopt(pycurl.FOLLOWLOCATION, False)
+        c.setopt(pycurl.CONNECTTIMEOUT, 10)
+        c.setopt(pycurl.TIMEOUT, 10)
+        c.setopt(pycurl.COOKIEFILE, '')
+        c.setopt(pycurl.URL, url)
+        try:
+            c.perform()
+            response_code = c.getinfo(pycurl.RESPONSE_CODE)
+            c.close()
+            return True if response_code < 400 else False
+        except pycurl.error as err:
+            return False
+    else:
+        return False
+
+
+
+
+
+ip_file = '/Users/ahmad/Desktop/voip/ip.txt'
+user_file = '/Users/ahmad/Desktop/voip/user.txt'
+password_file = '/Users/ahmad/Desktop/voip/pass.txt'
+x=True
+with open(ip_file) as ip_as :
+    for ip in zip(ip_as):
+        ip=ip[0]
+        ip=ip.strip()   
+        print ip
+        #print url_exists(ip)
+        if url_exists(ip):
+                with open(user_file) as user_as:
+                    for user in zip(user_as):
+                        #print user
+                        with open(password_file) as password_as:
+                            for password in zip(password_as):
+                                #print password
+  
+                                print(" ip {ip} trying with user {user} and password {password}".format(ip=ip, user=user[0] , password = password[0]))
+                                x=False
+
