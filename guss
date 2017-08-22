@@ -29,12 +29,12 @@ def url_exists(url):
 
 
 
-
+>>> from itertools import izip, izip_longest
 
 ip_file = '/Users/ahmad/Desktop/voip/ip.txt'
 user_file = '/Users/ahmad/Desktop/voip/user.txt'
 password_file = '/Users/ahmad/Desktop/voip/pass.txt'
-x=True
+
 with open(ip_file) as ip_as :
     for ip in zip(ip_as):
         ip=ip[0]
@@ -50,5 +50,4 @@ with open(ip_file) as ip_as :
                                 #print password
   
                                 print(" ip {ip} trying with user {user} and password {password}".format(ip=ip, user=user[0] , password = password[0]))
-                                x=False
 
