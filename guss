@@ -51,3 +51,13 @@ with open(ip_file) as ip_as :
   
                                 print(" ip {ip} trying with user {user} and password {password}".format(ip=ip, user=user[0] , password = password[0]))
 
+
+import paramiko
+ip = 'http://221.228.109.107/'
+username = 'testuser'
+password = 'password'
+
+remote_conn_pre=paramiko.SSHClient()
+remote_conn_pre.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+remote_conn_pre.connect(ip, username=username, password=password, look_for_keys=False, allow_agent=False)
+
